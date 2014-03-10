@@ -1,2 +1,0 @@
-fitbuddy-gympass-server
-=======================
