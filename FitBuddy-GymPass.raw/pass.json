@@ -1,0 +1,74 @@
+{
+  "formatVersion" : 1,
+  "passTypeIdentifier" : "pass.com.giantrobotlabs.fitbuddy",
+  "serialNumber" : "000000001",
+  "webServiceURL" : "https://example.com/passes/",
+  "authenticationToken" : "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc",
+  "teamIdentifier" : "MK3WE6JNT9",
+  "associatedStoreIdentifiers":[505913722],
+  "appLaunchURL" : "fitbuddy://",
+  "locations" : [
+    {
+      "longitude" : __locationLon__,
+      "latitude" : __locationLat__
+    }
+  ],
+  "barcode" : {
+    "altText" : "__memberId__",
+    "message" : "__memberId__",
+    "format" : "PKBarcodeFormatPDF417",
+    "messageEncoding" : "iso-8859-1"
+  },
+  "organizationName" : "FitBuddy Gym Pass",
+  "description" : "FitBuddy Gym Pass",
+  "logoText" : "Gym Pass",
+  "foregroundColor" : "rgb(255, 255, 255)",
+  "backgroundColor" : "rgb(228, 0, 31)",
+  "generic" : {
+    "primaryFields" : [
+    {
+        "key" : "membership",
+        "value" : "__locationName__"
+    }
+         
+    ],
+    "secondaryFields" : [
+    {
+        "key" : "member",
+        "label" : "MEMBER",
+        "value" : "__memberName__"
+    },
+    {
+        "key" : "memberId",
+        "label" : "ID",
+        "value" : "__memberId__"
+      }
+      
+    ],
+    "auxiliaryFields" : [
+
+    ],
+    "backFields" : [
+    {
+		"key" : "providedBy",
+    	"label" : "This pass is provided by",
+    	"value" : "giantrobotlabs.com"
+    },
+    {
+    	"key" : "contact",
+    	"label" : "Contact",
+    	"value" : "support@giantrobotlabs.com"
+    },
+    {
+    	"key" : "disclaimer",
+    	"label": "ABOUT THIS PASS",
+    	"value" : "\nThe FitBuddy Gym Pass is provided as is to you as a means to transfer your membership number via the barcode on the face. This Gym Pass does not in any way replace your gym membership, identification, fees, or costs. The Gym Pass is simply a duplicate of your official gym membership credentials to be used at your own discretion when entering your gym. " 
+    },
+    {
+    	"key": "venueLocation",
+    	"label":"__locationName__",
+    	"value" : "__locationAddress__"
+    }
+    ]
+  }
+}
