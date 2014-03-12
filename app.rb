@@ -12,12 +12,23 @@ Passbook.configure do |passbook|
 end
 
 get '/fitbuddy/passbook' do
-  passbook = getPassport(params)
-  response['Content-Type'] = 'application/vnd.apple.pkpass'
-  attachment 'FitBuddy-GymPass.pkpass'
-  passbook.stream.string
+  halt(404,"404: No bueno")
 end
 
+=begin
+POST REQUEST BODY
+{
+    "memberName" : "member_name"
+    "memberId" : "member_id",
+    "locations" :[
+    {
+      "name" : "loc_name",
+      "address" : "loc_address",
+      "latitude" : 99.9999,
+      "longitude" : 99.9999
+    }]
+}
+=end
 post '/fitbuddy/passbook' do
   params = JSON.parse request.body.read
   passbook = getPassport(params)
@@ -35,14 +46,16 @@ get '/agent' do
   "you're using #{request.user_agent}"
 end
 
-def getPassport(params)
+def getPassport(data)
 
-  memberName = params["memberName"]
-  memberId = params["memberId"]
-  locationName = params["locationName"]
-  locationAddress = params["locationAddress"]
-  locationLat = params["locationLat"]
-  locationLon = params["locationLon"]
+  memberName = data["memberName"]
+  memberId = data["memberId"]
+
+  location = data["locations"][0]
+  locationName = location ["name"]
+  locationAddress = location ["address"]
+  locationLat = location ["latitude"]
+  locationLon = location ["longitude"]
 
   file = File.open(PassbookConfig.pass_dir + '/pass.json')
   json = file.read
@@ -51,8 +64,8 @@ def getPassport(params)
   json = json.gsub("__memberId__", memberId)
   json = json.gsub("__locationName__", locationName)
   json = json.gsub("__locationAddress__", locationAddress)
-  json = json.gsub("__locationLat__", locationLat)
-  json = json.gsub("__locationLon__", locationLon)
+  json = json.gsub("__locationLat__", locationLat.to_s())
+  json = json.gsub("__locationLon__", locationLon.to_s())
 
   passbook = Passbook::PKPass.new json
   passbook.addFiles [PassbookConfig.pass_dir + '/logo.png', PassbookConfig.pass_dir + '/logo@2x.png', PassbookConfig.pass_dir + '/icon.png', PassbookConfig.pass_dir + '/icon@2x.png']
