@@ -10,15 +10,53 @@ GEM
     atomic (1.1.15)
     commander (4.1.6)
       highline (~> 1.6.11)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     grocer (0.5.0)
+    hashie (2.0.5)
     highline (1.6.21)
     i18n (0.6.9)
+    jwt (0.1.11)
+      multi_json (>= 1.5)
     minitest (4.7.5)
     multi_json (1.9.0)
+    multi_xml (0.5.5)
+    multipart-post (2.0.0)
+    oauth (0.4.7)
+    oauth2 (0.9.3)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 0.1.8)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
+    omniauth (1.2.1)
+      hashie (>= 1.2, < 3)
+      rack (~> 1.0)
+    omniauth-github (1.1.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-oauth2 (1.1.2)
+      faraday (>= 0.8, < 0.10)
+      multi_json (~> 1.3)
+      oauth2 (~> 0.9.3)
+      omniauth (~> 1.2)
+    omniauth-openid (1.0.1)
+      omniauth (~> 1.0)
+      rack-openid (~> 1.3.1)
+    omniauth-twitter (1.0.1)
+      multi_json (~> 1.3)
+      omniauth-oauth (~> 1.0)
     passbook (0.3.1)
     rack (1.4.4)
+    rack-openid (1.3.1)
+      rack (>= 1.1.0)
+      ruby-openid (>= 2.1.8)
     rack-protection (1.3.2)
       rack
+    ruby-openid (2.5.0)
     rubyzip (1.0.0)
     sinatra (1.3.3)
       rack (~> 1.3, >= 1.3.6)
@@ -37,6 +75,9 @@ DEPENDENCIES
   activesupport
   commander
   grocer
+  omniauth-github
+  omniauth-openid
+  omniauth-twitter
   passbook
   rack
   rubyzip (~> 1.0.0)

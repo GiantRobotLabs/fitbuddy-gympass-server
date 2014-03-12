@@ -11,7 +11,22 @@ Passbook.configure do |passbook|
   passbook.wwdc_cert = PassbookConfig.dev_cert
 end
 
-get '/' do
+get '/fitbuddy/passbook' do
+  passbook = getPassport(params)
+  response['Content-Type'] = 'application/vnd.apple.pkpass'
+  attachment 'FitBuddy-GymPass.pkpass'
+  passbook.stream.string
+end
+
+post '/fitbuddy/passbook' do
+  params = JSON.parse request.body.read
+  passbook = getPassport(params)
+  response['Content-Type'] = 'application/vnd.apple.pkpass'
+  attachment 'FitBuddy-GymPass.pkpass'
+  passbook.stream.string
+end
+
+get '/health' do
   "the time where this server lives is #{Time.now}
     <br /><br />check out your <a href=\"/agent\">user_agent</a>"
 end
@@ -20,14 +35,14 @@ get '/agent' do
   "you're using #{request.user_agent}"
 end
 
-get '/passbook' do
+def getPassport(params)
 
-  memberName = params[:memberName]
-  memberId = params[:memberId]
-  locationName = params[:locationName]
-  locationAddress = params[:locationAddress]
-  locationLat = params[:locationLat]
-  locationLon = params[:locationLon]
+  memberName = params["memberName"]
+  memberId = params["memberId"]
+  locationName = params["locationName"]
+  locationAddress = params["locationAddress"]
+  locationLat = params["locationLat"]
+  locationLon = params["locationLon"]
 
   file = File.open(PassbookConfig.pass_dir + '/pass.json')
   json = file.read
@@ -41,7 +56,7 @@ get '/passbook' do
 
   passbook = Passbook::PKPass.new json
   passbook.addFiles [PassbookConfig.pass_dir + '/logo.png', PassbookConfig.pass_dir + '/logo@2x.png', PassbookConfig.pass_dir + '/icon.png', PassbookConfig.pass_dir + '/icon@2x.png']
-  response['Content-Type'] = 'application/vnd.apple.pkpass'
-  attachment 'FitBuddy-GymPass.pkpass'
-  passbook.stream.string
+
+  return passbook
+
 end
