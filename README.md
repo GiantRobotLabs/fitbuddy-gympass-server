@@ -10,7 +10,7 @@ Sinatra server to generate the iOS Passbook Pass for FitBuddy-GymPass
 
 <pre>curl -X POST -H "Content-Type: application/json" \
   -d '{"memberName" : "member_name","memberId" : "member_id","locations" :[{"name" : "loc_name","address" : "loc_address","latitude" : "99.9999","longitude" : "99.9999"}]}' \
-  -o passbook.pks \
+  -o passbook.pkpass \
   http://evilsushi.giantrobotlabs.com/fitbuddy/passbook</pre>
 
 ##GymPass Resources##
