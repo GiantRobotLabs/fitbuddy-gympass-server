@@ -2,7 +2,7 @@
   "formatVersion" : 1,
   "passTypeIdentifier" : "pass.com.giantrobotlabs.fitbuddy",
   "serialNumber" : "000000001",
-  "webServiceURL" : "https://example.com/passes/",
+  "webServiceURL" : "https://evilsushi.giantrobotlabs.com",
   "authenticationToken" : "vxwxd7J8AlNNFPS8k0a0FfUFtq0ewzFdc",
   "teamIdentifier" : "MK3WE6JNT9",
   "associatedStoreIdentifiers":[505913722],

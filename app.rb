@@ -37,13 +37,29 @@ post '/fitbuddy/passbook' do
   passbook.stream.string
 end
 
+post '/pass-updates/log' do
+  puts("[Error] Description: #{params[:description]}}")
+  puts(params)
+  halt 200
+end
+
+# Register a device to receive push notifications for a pass.
+post '/devices/:device_library_identifier/registrations/:pass_type_identifier/:serial_number/?' do
+  halt 200
+end
+
+# Unregister a device so it no longer receives push notifications for a pass.
+delete '/devices/:device_library_identifier/registrations/:pass_type_identifier/:serial_number/?' do
+  halt 200
+end
+
 get '/health' do
   "the time where this server lives is #{Time.now}
     <br /><br />check out your <a href=\"/agent\">user_agent</a>"
 end
 
 get '/agent' do
-  "you're using #{request.user_agent}"
+  halt(200, "you're using #{request.user_agent}")
 end
 
 def getPassport(data)
